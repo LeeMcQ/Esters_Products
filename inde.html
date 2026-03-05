@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ester's Products | Natural Health & Beauty • Malmesbury</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream:   #F9F5EE;
+      --cream2:  #F2EBD9;
+      --brown:   #5C3D1E;
+      --forest:  #2D5016;
+      --sage:    #6B8C52;
+      --amber:   #C8821A;
+      --dark:    #1A1208;
+      --muted:   #7A6A55;
+      --white:   #FFFFFF;
+      --card-bg: #FFFDF8;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+    }
+
+    /* ── DECORATIVE SVG LEAF DIVIDERS ── */
+    .leaf-divider {
+      text-align: center;
+      color: var(--sage);
+      font-size: 1.4rem;
+      letter-spacing: 0.6rem;
+      margin: 0.5rem 0;
+      opacity: 0.6;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 1.5rem;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(249,245,238,0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(92,61,30,0.12);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--forest);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--forest);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: 0.04em;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--amber);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--forest); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--forest);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.65rem 1.4rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--brown); transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(92,61,30,0.1);
+      z-index: 99;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu.open {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 0.9rem 0;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      border-bottom: 1px solid rgba(92,61,30,0.08);
+    }
+
+    .mobile-menu .mob-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      background: var(--forest);
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('0.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.42) saturate(0.9);
+      transform: scale(1.05);
+      animation: zoomOut 10s ease forwards;
+    }
+
+    @keyframes zoomOut {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1.0); }
+    }
+
+    /* Warm botanical overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 80%, rgba(200,130,26,0.15) 0%, transparent 60%),
+                  linear-gradient(to top, rgba(26,18,8,0.5) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      animation: fadeUp 1s ease 0.3s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9);
+      padding: 0.45rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7fc47f;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      color: #fff;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: #F5D49A;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.82);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--amber);
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      box-shadow: 0 8px 24px rgba(200,130,26,0.4);
+    }
+
+    .btn-primary:hover { background: #a86a10; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      backdrop-filter: blur(6px);
+      transition: all 0.25s;
+    }
+
+    .btn-ghost:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.82rem;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .hero-stat { display: flex; align-items: center; gap: 0.5rem; }
+    .hero-stat i { color: #F5D49A; }
+
+    .stat-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ── ANNOUNCEMENT STRIP ── */
+    .strip {
+      background: var(--forest);
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    .strip span { color: #F5D49A; }
+
+    /* ── SECTIONS BASE ── */
+    section { padding: 6rem 1.5rem; }
+
+    .container { max-width: 1160px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: var(--dark);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--forest);
+    }
+
+    /* ── ABOUT ── */
+    #about { background: #fff; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      height: 520px;
+      display: block;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--cream);
+      border: 1px solid rgba(92,61,30,0.15);
+      border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 240px;
+    }
+
+    .about-badge-icon { font-size: 2.2rem; }
+
+    .about-badge-text .t1 { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
+    .about-badge-text .t2 { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    .about-text .accent-line {
+      width: 50px;
+      height: 3px;
+      background: var(--amber);
+      border-radius: 2px;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 1.2rem;
+      background: var(--cream);
+      border-radius: 16px;
+      border: 1px solid rgba(92,61,30,0.08);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Brands */
+    .brands-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--forest);
+      color: #fff;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PRODUCTS ── */
+    #bestsellers { background: var(--cream2); }
+
+    .products-header { text-align: center; margin-bottom: 4rem; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(92,61,30,0.1);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.12);
+    }
+
+    .product-img-wrap {
+      height: 280px;
+      background: linear-gradient(135deg, #f0ead8 0%, #e8dfc8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to top, var(--card-bg), transparent);
+    }
+
+    .product-img-wrap img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.4s ease;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      background: var(--amber);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    .product-body {
+      padding: 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-brand {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-stars {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-stars .stars { color: var(--amber); font-size: 0.8rem; }
+    .product-stars .count { font-size: 0.78rem; color: var(--muted); }
+
+    .product-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .product-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 1rem 0;
+    }
+
+    .benefit-tag {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(45,80,22,0.08);
+      color: var(--forest);
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(92,61,30,0.08);
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .product-price sup {
+      font-size: 1rem;
+      vertical-align: super;
+      font-weight: 500;
+    }
+
+    .order-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--forest);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.25s;
+    }
+
+    .order-btn:hover { background: var(--brown); transform: scale(1.03); }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--forest); }
+
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+    .testimonials-header .section-title { color: #fff; }
+    .testimonials-header .section-label { color: #F5D49A; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testi-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: background 0.3s;
+    }
+
+    .testi-card:hover { background: rgba(255,255,255,0.12); }
+
+    .testi-stars { color: #F5D49A; font-size: 0.9rem; margin-bottom: 1rem; }
+
+    .testi-text {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .testi-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(200,130,26,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #F5D49A;
+      flex-shrink: 0;
+    }
+
+    .testi-name { font-weight: 600; color: #fff; font-size: 0.88rem; }
+    .testi-loc  { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+    /* ── WHY US ── */
+    #why { background: #fff; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .why-left .section-title { margin-top: 0.5rem; }
+
+    .why-left p {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .why-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .why-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--cream2);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 56px;
+      text-align: right;
+    }
+
+    .why-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .why-content p { font-size: 0.93rem; color: var(--muted); line-height: 1.7; }
+
+    .why-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(45,80,22,0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── BRANDS STRIP ── */
+    .brands-section {
+      background: var(--cream2);
+      padding: 3.5rem 1.5rem;
+      border-top: 1px solid rgba(92,61,30,0.08);
+      border-bottom: 1px solid rgba(92,61,30,0.08);
+    }
+
+    .brands-section .container {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .brands-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .brand-logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .brand-logo-item img {
+      height: 50px;
+      object-fit: contain;
+      filter: grayscale(0.3) opacity(0.8);
+      transition: filter 0.3s, opacity 0.3s;
+    }
+
+    .brand-logo-item:hover img { filter: none; opacity: 1; }
+
+    .brand-logo-item span {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info .section-title { margin-top: 0.5rem; }
+
+    .contact-details {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(45,80,22,0.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-text .label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-item-text .value {
+      font-size: 1rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .contact-item-text .sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .contact-item-text a {
+      color: var(--dark);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-item-text a:hover { color: var(--forest); }
+
+    .wa-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #22C55E;
+      color: #fff;
+      text-decoration: none;
+      padding: 1.3rem 2rem;
+      border-radius: 20px;
+      margin-top: 2.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 8px 30px rgba(34,197,94,0.3);
+    }
+
+    .wa-cta:hover { background: #16a34a; transform: translateY(-3px); box-shadow: 0 14px 40px rgba(34,197,94,0.35); }
+
+    .wa-cta i { font-size: 2rem; }
+
+    .wa-cta-text .t1 { font-size: 1.1rem; font-weight: 700; }
+    .wa-cta-text .t2 { font-size: 0.82rem; opacity: 0.85; margin-top: 2px; }
+
+    .map-wrap {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      height: 100%;
+      min-height: 420px;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 0;
+      display: block;
+    }
+
+    /* ── HOURS BOX ── */
+    .hours-box {
+      margin-top: 1.5rem;
+      background: var(--cream2);
+      border-radius: 16px;
+      padding: 1.4rem 1.8rem;
+      border: 1px solid rgba(92,61,30,0.1);
+    }
+
+    .hours-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(92,61,30,0.06);
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+    .hours-open { color: var(--forest); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    footer .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    footer .footer-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    footer .footer-links a:hover { color: #F5D49A; }
+
+    .footer-copy { font-size: 0.78rem; }
+
+    /* ── FLOATING WA BUTTON ── */
+    .float-wa {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      width: 60px;
+      height: 60px;
+      background: #22C55E;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(34,197,94,0.45);
+      z-index: 200;
+      transition: all 0.3s;
+    }
+
+    .float-wa:hover {
+      background: #16a34a;
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .float-wa::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(34,197,94,0.35);
+      animation: ring 2.5s infinite;
+    }
+
+    @keyframes ring {
+      0%   { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .about-grid,
+      .why-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .about-badge { right: 0; bottom: -1rem; max-width: 200px; }
+      .about-img-wrap img { height: 360px; }
+
+      .hero-stats { gap: 1.2rem; font-size: 0.74rem; }
+
+      section { padding: 4rem 1.2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+      .stat-num { font-size: 1.8rem; }
+      .hero-stats { display: none; }
+      .hero h1 { letter-spacing: -1px; }
+      .brand-logos { gap: 1.5rem; }
+      .brands-section .container { gap: 1rem; }
+      section { padding: 3.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT STRIP -->
+  <div class="strip">
+    🌿 Free local delivery in Malmesbury &amp; surrounds &nbsp;·&nbsp; <span>Open 24/7</span> &nbsp;·&nbsp; WhatsApp: <span>083 422 0862</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text">
+          <span class="logo-name">Ester's Products</span>
+          <span class="logo-sub">Malmesbury · Natural Health</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#bestsellers">Products</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://wa.me/27834220862" target="_blank" class="nav-cta">
+        <i class="fab fa-whatsapp"></i> WhatsApp Us
+      </a>
+      <div class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMenu()">About Us</a>
+    <a href="#bestsellers" onclick="closeMenu()">Our Products</a>
+    <a href="#testimonials" onclick="closeMenu()">Customer Reviews</a>
+    <a href="#why" onclick="closeMenu()">Why Choose Us</a>
+    <a href="#contact" onclick="closeMenu()">Contact & Location</a>
+    <a href="https://wa.me/27834220862" target="_blank" class="mob-cta">
+      <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Health &amp; Beauty Shop · Malmesbury, Western Cape</div>
+      <h1>Natural <em>Relief.</em><br>Real Results.</h1>
+      <p class="hero-sub">
+        Your trusted local source for premium natural remedies. Proudly stocking Heal the Hood, Watkins, Willow Wellness and more.
+      </p>
+      <div class="hero-btns">
+        <a href="#bestsellers" class="btn-primary">
+          Shop Best Sellers <i class="fas fa-arrow-down"></i>
+        </a>
+        <a href="https://wa.me/27834220862" target="_blank" class="btn-ghost">
+          <i class="fab fa-whatsapp"></i> Message Us 24/7
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><i class="fas fa-clock"></i> Open 24 Hours</div>
+      <div class="stat-divider"></div>
+      <div class="hero-stat"><i class="fas fa-map-marker-alt"></i> 43 Mimosa Ave, Malmesbury</div>
+      <div class="stat-divider"></div>
+      <div class="hero-stat"><i class="fas fa-leaf"></i> 100% Natural Products</div>
+    </div>
+  </header>
+
+  <!-- BRANDS STRIP -->
+  <div class="brands-section">
+    <div class="container">
+      <p class="brands-label">Official Stockist of</p>
+      <div class="brand-logos">
+        <div class="brand-logo-item">
+          <img src="https://healthehood.co.za/wp-content/uploads/2020/04/heal-the-hood_logo_colour.png"
+               alt="Heal the Hood logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span style="display:none; font-weight:700; color:var(--forest); font-size:0.9rem;">Heal the Hood</span>
+          <span>Heal the Hood</span>
+        </div>
+        <div class="brand-logo-item">
+          <img src="https://watkinsonline.co.za/cdn/shop/files/Watkins-logo-without-2_100x.jpg?v=1614830557"
+               alt="Watkins logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span style="display:none; font-weight:700; color:var(--forest); font-size:0.9rem;">Watkins</span>
+          <span>Watkins</span>
+        </div>
+        <div class="brand-logo-item">
+          <img src="https://www.willowwellness.co.za/images/Willow-Logo-Vector.png"
+               alt="Willow Wellness logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span style="display:none; font-weight:700; color:var(--forest); font-size:0.9rem;">Willow Wellness</span>
+          <span>Willow Wellness</span>
+        </div>
+        <div class="brand-logo-item" style="align-items:center; justify-content:center;">
+          <div style="font-size:2.2rem; line-height:1;">🌿</div>
+          <span>Organic Essentials</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img src="unnamed.jpg"
+               alt="Natural health products and remedies at Ester's shop in Malmesbury">
+          <div class="about-badge">
+            <div class="about-badge-icon">🌱</div>
+            <div class="about-badge-text">
+              <div class="t1">Proudly South African</div>
+              <div class="t2">Stockist of Heal the Hood, Watkins &amp; Willow Wellness</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text reveal" style="transition-delay:0.15s">
+          <span class="section-label">Est. in Malmesbury, Western Cape</span>
+          <h2 class="section-title">Your Local Natural<br><em>Health Partner</em></h2>
+          <div class="accent-line"></div>
+          <p>
+            Ester's Products is a family-run health and beauty shop in the heart of Malmesbury, Western Cape.
+            We specialise in 100% natural, effective remedies that have been trusted for generations across South Africa.
+          </p>
+          <p>
+            As an official stockist of <strong>Heal the Hood</strong>, <strong>Watkins</strong>, and <strong>Willow Wellness</strong> products, 
+            we help our community find gentle yet powerful relief — from everyday aches and pains to skin concerns and general wellness — 
+            without harsh chemicals or synthetic fillers.
+          </p>
+          <p>
+            Whether you're looking for muscle relief, natural skincare, or organic oils, we're here 24 hours a day — 
+            call us, WhatsApp us, or pop in. We love helping people feel better, naturally.
+          </p>
+          <div class="brands-row">
+            <div class="brand-chip">✓ 100% Natural</div>
+            <div class="brand-chip">✓ No Harsh Chemicals</div>
+            <div class="brand-chip">✓ SA Trusted Brands</div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="stat-num">24/7</div>
+              <div class="stat-label">Available</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">235+</div>
+              <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Natural</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section id="bestsellers">
+    <div class="container">
+      <div class="products-header reveal">
+        <span class="section-label">Our Top Picks</span>
+        <h2 class="section-title">Best Selling <em>Natural Remedies</em></h2>
+        <p style="margin-top:1rem; color:var(--muted); max-width:500px; margin-left:auto; margin-right:auto; font-size:0.97rem; line-height:1.7;">
+          Carefully selected from South Africa's most trusted natural health brands. 
+          Order via WhatsApp — we deliver locally and respond in minutes.
+        </p>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- PRODUCT 1: Brazen Serpent -->
+        <div class="product-card reveal" style="transition-delay:0.05s">
+          <div class="product-img-wrap">
+            <span class="product-tag">⭐ Best Seller</span>
+            <img src="https://healthehood.co.za/wp-content/uploads/2020/04/serpent.png"
+                 alt="Brazen Serpent Natural Pain Relief Ointment by Heal the Hood"
+                 onerror="this.src='https://placehold.co/300x280/f0ead8/5C3D1E?text=Brazen+Serpent'">
+          </div>
+          <div class="product-body">
+            <div class="product-brand">Heal the Hood</div>
+            <h3 class="product-name">Brazen Serpent Ointment</h3>
+            <div class="product-stars">
+              <span class="stars">★★★★★</span>
+              <span class="count">South African favourite</span>
+            </div>
+            <p class="product-desc">
+              A 100% natural, proudly South African healing balm developed by Heal the Hood.
+              Fast-acting relief trusted by thousands — including stroke recovery patients and arthritis sufferers.
+            </p>
+            <div class="product-benefits">
+              <span class="benefit-tag">Muscle Pain</span>
+              <span class="benefit-tag">Joint Pain</span>
+              <span class="benefit-tag">Arthritis</span>
+              <span class="benefit-tag">Fibromyalgia</span>
+              <span class="benefit-tag">Gout</span>
+              <span class="benefit-tag">Insect Bites</span>
+              <span class="benefit-tag">Swelling</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price"><sup>R</sup>149</div>
+              <a href="https://wa.me/27834220862?text=Hi%20Ester's!%20I'd%20like%20to%20order%20Brazen%20Serpent%20Ointment%20(R149).%20Please%20advise%20on%20delivery."
+                 target="_blank" class="order-btn">
+                <i class="fab fa-whatsapp"></i> Order Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT 2: Castor Oil -->
+        <div class="product-card reveal" style="transition-delay:0.12s">
+          <div class="product-img-wrap">
+            <span class="product-tag">🌿 Organic</span>
+            <img src="https://www.willowwellness.co.za/images/cmsimages/thumb/product-2272-7869-essoil0114.png"
+                 alt="Willow Wellness Organic Cold Pressed Castor Oil 100ml"
+                 onerror="this.src='https://placehold.co/300x280/f0ead8/5C3D1E?text=Castor+Oil'">
+          </div>
+          <div class="product-body">
+            <div class="product-brand">Willow Wellness</div>
+            <h3 class="product-name">Organic Castor Oil <small style="font-size:1rem; font-weight:400; color:var(--muted);">100ml</small></h3>
+            <div class="product-stars">
+              <span class="stars">★★★★★</span>
+              <span class="count">Cold pressed · Hexane-free</span>
+            </div>
+            <p class="product-desc">
+              Pure cold-pressed, hexane-free organic castor oil by Willow Wellness — formulated with the highest quality natural substances tried and tested by integrative doctors, naturopaths, and herbalists in clinical practice.
+            </p>
+            <div class="product-benefits">
+              <span class="benefit-tag">Hair Growth</span>
+              <span class="benefit-tag">Skin Nourishment</span>
+              <span class="benefit-tag">Anti-Inflammatory</span>
+              <span class="benefit-tag">Eyebrow Growth</span>
+              <span class="benefit-tag">Scalp Health</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price"><sup>R</sup>65</div>
+              <a href="https://wa.me/27834220862?text=Hi%20Ester's!%20I'd%20like%20to%20order%20Organic%20Castor%20Oil%20100ml%20(R65).%20Please%20advise%20on%20delivery."
+                 target="_blank" class="order-btn">
+                <i class="fab fa-whatsapp"></i> Order Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT 3: Watkins Menthol Camphor -->
+        <div class="product-card reveal" style="transition-delay:0.19s">
+          <div class="product-img-wrap">
+            <span class="product-tag">80+ Years Trusted</span>
+            <img src="https://watkinsonline.co.za/cdn/shop/files/2a801cf51f373eca9a3105d37462ed52_1567x1800.jpg?v=1727269526"
+                 alt="Watkins Menthol Camphor Ointment 75g"
+                 onerror="this.src='https://placehold.co/300x280/f0ead8/5C3D1E?text=Watkins+Ointment'">
+          </div>
+          <div class="product-body">
+            <div class="product-brand">JR Watkins</div>
+            <h3 class="product-name">Menthol Camphor Ointment <small style="font-size:1rem; font-weight:400; color:var(--muted);">75g</small></h3>
+            <div class="product-stars">
+              <span class="stars">★★★★★</span>
+              <span class="count">35 reviews · 100% 5-star</span>
+            </div>
+            <p class="product-desc">
+              The original Watkins formula — a South African household staple for over 80 years. Infused with invigorating menthol and camphor scents, delivering a refreshing cooling sensation with every application.
+            </p>
+            <div class="product-benefits">
+              <span class="benefit-tag">Chest Congestion</span>
+              <span class="benefit-tag">Sinus Relief</span>
+              <span class="benefit-tag">Aching Muscles</span>
+              <span class="benefit-tag">Cold & Flu</span>
+              <span class="benefit-tag">Headaches</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price"><sup>R</sup>100</div>
+              <a href="https://wa.me/27834220862?text=Hi%20Ester's!%20I'd%20like%20to%20order%20Watkins%20Menthol%20Camphor%20Ointment%2075g%20(R100).%20Please%20advise%20on%20delivery."
+                 target="_blank" class="order-btn">
+                <i class="fab fa-whatsapp"></i> Order Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MORE PRODUCTS NOTE -->
+      <div style="text-align:center; margin-top:3rem;" class="reveal">
+        <p style="color:var(--muted); font-size:0.95rem; margin-bottom:1rem;">
+          Looking for something else? We stock many more natural health &amp; beauty products.
+        </p>
+        <a href="https://wa.me/27834220862?text=Hi%20Ester's!%20What%20other%20natural%20health%20products%20do%20you%20stock?"
+           target="_blank" class="btn-primary" style="background:var(--brown);">
+          <i class="fab fa-whatsapp"></i> Ask About Our Full Range
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-label" style="color:#F5D49A;">What Our Customers Say</span>
+        <h2 class="section-title">Real Stories, <em style="color:#F5D49A;">Real Relief</em></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card reveal" style="transition-delay:0.05s">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "This ointment still works as good as it did years ago. I use the Watkins Menthol Camphor for my whole family — for colds, aches, everything. 
+            Ester is always so helpful and delivers fast. I will definitely order again."
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">S</div>
+            <div>
+              <div class="testi-name">Shantel V.</div>
+              <div class="testi-loc">Malmesbury</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal" style="transition-delay:0.12s">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "I suffer from a frozen shoulder. Since using the Watkins ointment I sleep better — the enduring pain has vanished like it was never there. 
+            Highly recommend Ester's for anyone struggling with pain."
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">K</div>
+            <div>
+              <div class="testi-name">Khosi T.</div>
+              <div class="testi-loc">Western Cape</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal" style="transition-delay:0.19s">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "The Brazen Serpent Ointment is incredible. My husband uses it for his arthritis and the relief is amazing. 
+            Ester replied on WhatsApp within minutes and the delivery was same day. This is exactly the service we need locally!"
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">M</div>
+            <div>
+              <div class="testi-name">Maria J.</div>
+              <div class="testi-loc">Malmesbury</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-left reveal">
+          <span class="section-label">Our Promise</span>
+          <h2 class="section-title">Why Malmesbury<br>Chooses <em>Ester's</em></h2>
+          <p>We're not just a shop — we're a community health partner. Every product we stock is chosen because we believe in it, and we're here to help you find what works best for you.</p>
+          <div style="margin-top:2rem;">
+            <a href="https://wa.me/27834220862" target="_blank" class="btn-primary" style="background:var(--forest);">
+              <i class="fab fa-whatsapp"></i> Get In Touch
+            </a>
+          </div>
+        </div>
+        <ul class="why-list reveal" style="transition-delay:0.15s">
+          <li class="why-item">
+            <div class="why-num">01</div>
+            <div class="why-content">
+              <div class="why-icon"><i class="fas fa-leaf"></i></div>
+              <h3>100% Natural &amp; Local</h3>
+              <p>We only stock trusted South African brands with proven natural formulations — no harsh chemicals, no synthetic fillers. Just pure, effective relief from nature.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">02</div>
+            <div class="why-content">
+              <div class="why-icon"><i class="fas fa-clock"></i></div>
+              <h3>Always Open — 24 Hours</h3>
+              <p>Health doesn't follow office hours. Message or call us any time of day or night — we're always available to assist and take your order.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">03</div>
+            <div class="why-content">
+              <div class="why-icon"><i class="fas fa-heart"></i></div>
+              <h3>Personal, Local Service</h3>
+              <p>Fast local delivery in Malmesbury and surrounding areas. We know our community personally and offer friendly, caring advice with every order.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">04</div>
+            <div class="why-content">
+              <div class="why-icon"><i class="fab fa-whatsapp"></i></div>
+              <h3>WhatsApp Convenience</h3>
+              <p>Browse, order, ask questions — all on WhatsApp. No complicated checkout. Just message us and we'll sort you out within minutes.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & MAP -->
+  <section id="contact" style="background: var(--cream2);">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:3.5rem;" class="reveal">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">Visit Us or <em>Message Anytime</em></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="contact-item-text">
+                <div class="label">Address</div>
+                <div class="value">43 Mimosa Ave, Malmesbury</div>
+                <div class="sub">Western Cape 7300, South Africa</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <div class="contact-item-text">
+                <div class="label">Phone / WhatsApp</div>
+                <div class="value"><a href="tel:0834220862">083 422 0862</a></div>
+                <div class="sub">Call or WhatsApp — 24 hours a day</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-clock"></i></div>
+              <div class="contact-item-text">
+                <div class="label">Trading Hours</div>
+                <div class="value">Open 24 Hours</div>
+                <div class="sub">Every day including public holidays</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-truck"></i></div>
+              <div class="contact-item-text">
+                <div class="label">Delivery</div>
+                <div class="value">Malmesbury &amp; Surrounds</div>
+                <div class="sub">Fast local delivery available · Ask us about delivery fees</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hours-box">
+            <div class="hours-title">🕒 Opening Hours</div>
+            <div class="hours-row"><span>Monday – Friday</span><span class="hours-open">Open 24 Hours</span></div>
+            <div class="hours-row"><span>Saturday</span><span class="hours-open">Open 24 Hours</span></div>
+            <div class="hours-row"><span>Sunday</span><span class="hours-open">Open 24 Hours</span></div>
+            <div class="hours-row"><span>Public Holidays</span><span class="hours-open">Open 24 Hours</span></div>
+          </div>
+
+          <a href="https://wa.me/27834220862?text=Hi%20Ester's!%20I'd%20like%20to%20place%20an%20order%20or%20find%20out%20more%20about%20your%20products."
+             target="_blank" class="wa-cta">
+            <i class="fab fa-whatsapp"></i>
+            <div class="wa-cta-text">
+              <div class="t1">Start a WhatsApp Chat</div>
+              <div class="t2">We usually reply within minutes · Open 24/7</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="map-wrap reveal" style="transition-delay:0.15s">
+          <iframe
+            title="Ester's Products location on Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13230.755563088792!2d18.68!3d-33.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcdb74ab6aa3099%3A0x8a0c4e3b6e0b6de9!2sMalmesbury%2C%207300!5e0!3m2!1sen!2sza!4v1700000000000!5m2!1sen!2sza"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Ester's Products</div>
+    <div class="footer-sub">Natural Health &amp; Beauty · Malmesbury, Western Cape</div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#bestsellers">Products</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/27834220862" target="_blank">WhatsApp</a>
+    </div>
+    <div style="display:flex; justify-content:center; gap:1rem; margin-bottom:1.5rem;">
+      <a href="https://healthehood.co.za" target="_blank" style="color:rgba(255,255,255,0.35); font-size:0.78rem; text-decoration:none;">Heal the Hood ↗</a>
+      <span style="color:rgba(255,255,255,0.2);">·</span>
+      <a href="https://watkinsonline.co.za" target="_blank" style="color:rgba(255,255,255,0.35); font-size:0.78rem; text-decoration:none;">Watkins ↗</a>
+      <span style="color:rgba(255,255,255,0.2);">·</span>
+      <a href="https://www.willowwellness.co.za" target="_blank" style="color:rgba(255,255,255,0.35); font-size:0.78rem; text-decoration:none;">Willow Wellness ↗</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 Ester's Products, Malmesbury · 43 Mimosa Ave · 083 422 0862<br>
+      <span style="font-size:0.72rem; opacity:0.6;">Product images &amp; trademarks belong to their respective brands.</span>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/27834220862" target="_blank" class="float-wa" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
+
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('open', menuOpen);
+    });
+
+    function closeMenu() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+    }
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // Smooth close menu on outside click
+    document.addEventListener('click', (e) => {
+      if (menuOpen && !hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMenu();
+      }
+    });
+  </script>
+</body>
+</html>
